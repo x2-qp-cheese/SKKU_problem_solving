@@ -1,14 +1,16 @@
 int climbStairs(int n){
-    int* arr = (int*)malloc(sizeof(int)*n);
-    if(n == 1)
+    if (n == 1)
         return 1;
-    else if(n == 2)
+    else if (n == 2)
         return 2;
-    else{
-        arr[0] = 1;
-        arr[1] = 2;
-        for(int i = 0; i < n-2; i++)
-            arr[i+2] = arr[i] + arr[i+1];
+    int first = 1;
+    int second = 2;
+    int res;
+    int tmp;
+    for(int i = 3; i <= n; i++){
+        res = first + second;
+        first = second;
+        second = res;
     }
-    return arr[n-1];
+    return res;
 }
