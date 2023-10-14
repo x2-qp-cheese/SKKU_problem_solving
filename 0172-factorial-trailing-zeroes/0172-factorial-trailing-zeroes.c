@@ -1,15 +1,17 @@
 int trailingZeroes(int n){
-    long long int tmp = 1;
+//0의 개수
+//5의 개수만 확인하면 끝
     int count = 0;
-    
-    for(int i = n; i >= 1; i--){
-        if(i%2 == 0 || i%5 == 0)
-            tmp*=i;
-        while(tmp%10 == 0){
-            count++;
-            tmp/=10;
+    int tmp;
+    if(n == 0)
+        return count;
+    while(n){
+        tmp = n;
+        while(tmp % 5 == 0){
+            count++; 
+            tmp/=5;
         }
-        tmp%=10000;
+        n--;
     }
-    return count;
+    return count;   
 }
