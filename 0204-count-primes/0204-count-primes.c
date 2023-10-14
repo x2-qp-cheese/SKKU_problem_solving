@@ -1,21 +1,32 @@
-int countPrimes(int n){
-    int count = 0;
-    int arr[n+1];
+#include <stdio.h>
 
-    for(int i = 2; i<=n; i++)
-        arr[i] = 1;
+int countPrimes(int n) {
+    if (n <= 1) {
+        return 0;
+    }
     
-    for(int i = 2; i*i <=n; i++){
-        if(arr[i] == 0)
+    int chk[n + 1];
+    int count = 0;
+    
+    for (int i = 2; i <= n; i++) {
+        chk[i] = i;
+    }
+    
+    for (int i = 2; i * i <= n; i++) {
+        if (!chk[i]) {
             continue;
-        for(int j = i*i; j <= n; j+=i){
-            arr[j] = 0;
+        }
+        for (int j = i * i; j <= n; j += i) {
+            chk[j] = 0;
         }
     }
-
-    for(int i = 2; i < n; i++)
-        if(arr[i] == 1)
+    
+    for (int i = 2; i < n; i++) {
+        if (chk[i]) {
             count++;
-
+        }
+    }
+    
     return count;
 }
+
